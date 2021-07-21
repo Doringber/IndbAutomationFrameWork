@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<AutomationType>web</AutomationType><!-- Web/Mobile/API/Desktop/Electron -->
+
+	<!-- URL -->
+	<URL>https://www.imdb.com/</URL>
+
+	<!-- Mobile -->
+	<UDID>emulator-5554</UDID>
+	<APP_PACKAGE>com.imdb.mobile</APP_PACKAGE>
+	<APP_ACTIVITY>.HomeActivity</APP_ACTIVITY>
+	<device_name>Pixel API 28</device_name>
+	<Appium_server>http://localhost:4723/wd/hub</Appium_server>
+	<AUTOMATION_NAME>UiAutomator2</AUTOMATION_NAME>
+	<APP_WAIT_ACTIVITY>2000</APP_WAIT_ACTIVITY>
+	<!-- WEB -->
+	<BrowserType>chrome</BrowserType>
+	<ChromedriverPath>/Users/doringber/Downloads/Chrome_Downloads/selenium/chromedriver</ChromedriverPath>
+	<ChromedriverElectronPath>/Users/doringber/Downloads/Chrome_Downloads/selenium/chromedriver-v3.1.2-mas-x64- electron/chromedriver</ChromedriverElectronPath>
+	<FirefoxdriverPath>/Users/doringber/Downloads/Chrome_Downloads/selenium/geckodriver</FirefoxdriverPath>
+	<IEDriverServerpath>/Users/doringber/Downloads/Chrome_Downloads/selenium/IEDriverServer</IEDriverServerpath>
+
+	<!-- API -->
+	<API_URL>http://localhost:8080</API_URL>
+	<API_Resource>/student</API_Resource>
+
+	<!-- Reports -->
+	<ReportFilePath>/Users/doringber/Downloads/Chrome_Downloads/selenium/report_project_update/</ReportFilePath>
+	<ReportScreenPath>/Users/doringber/Downloads/Chrome_Downloads/selenium/report_project_update/</ReportScreenPath>
+	<ReportFileName>TestExecution</ReportFileName>
+
+	<!-- DataBase -->
+	<DB_URL>jdbc:mysql://localhost:3306/new_schema</DB_URL>
+	<DB_User>root</DB_User>
+	<DB_Password>12345678</DB_Password>
+	<Excpted_Result>excpted_result</Excpted_Result>
+
+	<!-- Electron -->
+	<ElectronApp>/Users/doringber/Downloads/Chrome_Downloads/selenium/Electron API Demos.app/Contents/MacOS/Electron API Demos</ElectronApp>
+
+
+
+</Configuration>
