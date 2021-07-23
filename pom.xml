@@ -49,11 +49,13 @@
             <artifactId>video-recorder</artifactId>
             <version>1.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
-            <version>3.0.0</version>
+            <version>4.0.0</version>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
         <dependency>
             <groupId>io.rest-assured</groupId>
@@ -67,10 +69,5 @@
             <artifactId>json</artifactId>
             <version>20160810</version>
         </dependency>
-
-
-
-
-
     </dependencies>
 </project>

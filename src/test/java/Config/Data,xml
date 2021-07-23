@@ -25,8 +25,8 @@
 	<API_Resource>/student</API_Resource>
 
 	<!-- Reports -->
-	<ReportFilePath>/Users/doringber/Downloads/Chrome_Downloads/selenium/report_project_update/</ReportFilePath>
-	<ReportScreenPath>/Users/doringber/Downloads/Chrome_Downloads/selenium/report_project_update/</ReportScreenPath>
+	<ReportFilePath>src/test/java/TestResult/</ReportFilePath>
+	<ReportScreenPath>src/test/java/TestResult/</ReportScreenPath>
 	<ReportFileName>TestExecution</ReportFileName>
 
 	<!-- DataBase -->

@@ -1,5 +1,6 @@
 package Infrastructure.Uitiles;
 
+import com.aventstack.extentreports.ExtentReports;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import jdk.internal.org.xml.sax.SAXException;
 import org.json.JSONArray;
@@ -10,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
@@ -19,6 +21,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class CommanOps extends BaseTest{
@@ -50,12 +55,22 @@ public class CommanOps extends BaseTest{
 			break;
 		case "safari":
 			driver = initSafariDriver();
+		case "grid":
+			driver = initGridDriver();
 			break;
 		}
 		driver.manage().window().maximize();
 		driver.get(getData("URL"));
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		// screen = new Screen();
+	}
+
+	private static WebDriver initGridDriver() throws MalformedURLException {
+		String Node = "http://localhost:4444";
+		DesiredCapabilities caps = new DesiredCapabilities();
+		caps.setBrowserName("chrome");
+		driver = new RemoteWebDriver(new URL(Node), caps);
+		return driver;
 	}
 
 	private static WebDriver initSafariDriver() {
@@ -95,16 +110,16 @@ public class CommanOps extends BaseTest{
 	}
 	// TestNG
 	@BeforeSuite
-	public void starSuite() throws SAXException, IOException, ParserConfigurationException {
-//		instanceReport();
+	public void starSuite() throws SAXException, IOException, ParserConfigurationException, org.xml.sax.SAXException {
+		instanceReport();
 
 	}
 
-//	@AfterSuite
-//	public void afterSutie() {
-////		finalizeExtentTest();
-//
-//	}
+	@AfterSuite
+	public void afterSutie() {
+		finalizeExtentTest();
+
+	}
 
 	@BeforeTest()
 	public void startSession() throws ParserConfigurationException, SAXException, IOException, org.xml.sax.SAXException {
@@ -121,10 +136,10 @@ public class CommanOps extends BaseTest{
 
 	}
 
-//	@BeforeMethod(groups = { "Sanity" })
-//	public static void doBeforeTest(Method method) {
-////		initReportTest(method.getName().split("_")[0], method.getName().split("_")[1]);
-//	}
+	@BeforeMethod()
+	public static void doBeforeTest(Method method) {
+		initReportTest(method.getName().split("_")[0], method.getName().split("_")[1]);
+	}
 
 //	@AfterMethod(groups = { "Sanity" })
 //	public static void doAfterTest() throws ParserConfigurationException, SAXException, IOException {
@@ -133,4 +148,24 @@ public class CommanOps extends BaseTest{
 ////		finalizeReportTest();
 //
 //	}
+
+	// ExtentReports
+	public static void instanceReport() throws ParserConfigurationException, SAXException, IOException, org.xml.sax.SAXException {
+		extent = new ExtentReports();
+//		extent.config().(getData("ReportFilePath") + "Eexcution_" + timeStamp + "/" + getData("ReportFileName") + ".html");
+		extent.getStats();
+
+	}
+
+	public static void initReportTest(String TestName, String TestDescription) {
+		test = extent.createTest(TestName, TestDescription);
+	}
+
+//	public static void finalizeReportTest() {
+//		extent.close(test);
+//	}
+
+	public static void finalizeExtentTest() {
+		extent.flush();
+	}
 }

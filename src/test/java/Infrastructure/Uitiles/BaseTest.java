@@ -1,6 +1,7 @@
 package Infrastructure.Uitiles;
 
 import Infrastructure.PageObject.ImdbHomePage;
+import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import io.restassured.specification.RequestSpecification;
 import org.json.JSONObject;
@@ -14,6 +15,7 @@ import java.util.Calendar;
 public class BaseTest {
         public static WebDriver driver;
         static DesiredCapabilities dc = new DesiredCapabilities();
+        public static ExtentReports extent;
         public static ExtentTest test;
         public static RequestSpecification httpRequest;
         public static JSONObject requestParams = new JSONObject();
