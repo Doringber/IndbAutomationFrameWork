@@ -9,6 +9,8 @@ import org.jsoup.Connection;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -24,5 +26,15 @@ public class BaseTest {
         public static String myPlatform;
         public static JavascriptExecutor js = (JavascriptExecutor) driver;
         public static ImdbHomePage ImdbPage;
+        public static getConfig configuration;
+
+        static {
+                try {
+                        configuration = new getConfig();
+                } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                }
+        }
+
 
 }

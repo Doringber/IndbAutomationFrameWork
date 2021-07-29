@@ -1,10 +1,6 @@
 package Infrastructure.Uitiles;
 
-import com.aventstack.extentreports.ExtentReports;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import jdk.internal.org.xml.sax.SAXException;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -15,13 +11,9 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
-import org.w3c.dom.Document;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
@@ -31,18 +23,8 @@ public class CommanOps extends BaseTest{
 	private static String frameWork;
 	private static String BrowesrType;
 
-	public static String getData(String nodeName) throws ParserConfigurationException, IOException, org.xml.sax.SAXException {
-		File fXmlFile = new File("src/test/java/Config/Data,xml");
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-		Document doc = dBuilder.parse(fXmlFile);
-		doc.getDocumentElement().normalize();
-		return doc.getElementsByTagName(nodeName).item(0).getTextContent();
-
-	}
-
 	// WebDriver - initDriver
-	public static void initBrowesr(String browesrType) throws ParserConfigurationException, SAXException, IOException, org.xml.sax.SAXException {
+	public static void initBrowesr(String browesrType) throws ParserConfigurationException, IOException {
 		switch (browesrType) {
 		case "chrome":
 			driver = initChromeDriver();
@@ -60,8 +42,7 @@ public class CommanOps extends BaseTest{
 			break;
 		}
 		driver.manage().window().maximize();
-		driver.get(getData("URL"));
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.get(configuration.data.get("url").toString());
 		// screen = new Screen();
 	}
 
@@ -78,19 +59,19 @@ public class CommanOps extends BaseTest{
 		return driver;
 	}
 
-	private static WebDriver initIEdriver() throws ParserConfigurationException, SAXException, IOException {
+	private static WebDriver initIEdriver() throws ParserConfigurationException, IOException {
 //		System.setProperty("webdriver.ie.driver", getData("IEDriverServerpath"));
 		driver = new InternetExplorerDriver();
 		return driver;
 	}
 
-	private static WebDriver initFireFox() throws ParserConfigurationException, SAXException, IOException {
+	private static WebDriver initFireFox() throws ParserConfigurationException, IOException {
 //		System.setProperty("webdriver.gecko.driver", getData("FirefoxdriverPath"));
 		driver = new FirefoxDriver();
 		return driver;
 	}
 
-	private static WebDriver initChromeDriver() throws ParserConfigurationException, SAXException, IOException {
+	private static WebDriver initChromeDriver() throws ParserConfigurationException, IOException {
 		//setup the chromedriver using WebDriverManager
 		WebDriverManager.chromedriver().setup();
 		//Create Chrome Options
@@ -109,37 +90,37 @@ public class CommanOps extends BaseTest{
 		return driver;
 	}
 	// TestNG
-	@BeforeSuite
-	public void starSuite() throws SAXException, IOException, ParserConfigurationException, org.xml.sax.SAXException {
-		instanceReport();
+//	@BeforeSuite
+//	public void starSuite() throws IOException, ParserConfigurationException {
+//		instanceReport();
+//
+//	}
 
-	}
-
-	@AfterSuite
-	public void afterSutie() {
-		finalizeExtentTest();
-
-	}
+//	@AfterSuite
+//	public void afterSutie() {
+//		finalizeExtentTest();
+//
+//	}
 
 	@BeforeTest()
-	public void startSession() throws ParserConfigurationException, SAXException, IOException, org.xml.sax.SAXException {
-		initBrowesr(getData("BrowserType"));
+	public void startSession() throws ParserConfigurationException, IOException{
+		initBrowesr(configuration.data.get("browesrType").toString());
 		InitPages.init();
 
 	}
 
 	@AfterTest()
-	public void closeSession() throws ParserConfigurationException, SAXException,
+	public void closeSession() throws ParserConfigurationException,
 			IOException
 	{
 			driver.quit();
 
 	}
 
-	@BeforeMethod()
-	public static void doBeforeTest(Method method) {
-		initReportTest(method.getName().split("_")[0], method.getName().split("_")[1]);
-	}
+//	@BeforeMethod()
+//	public static void doBeforeTest(Method method) {
+//		initReportTest(method.getName().split("_")[0], method.getName().split("_")[1]);
+//	}
 
 //	@AfterMethod(groups = { "Sanity" })
 //	public static void doAfterTest() throws ParserConfigurationException, SAXException, IOException {
@@ -150,22 +131,22 @@ public class CommanOps extends BaseTest{
 //	}
 
 	// ExtentReports
-	public static void instanceReport() throws ParserConfigurationException, SAXException, IOException, org.xml.sax.SAXException {
-		extent = new ExtentReports();
-//		extent.config().(getData("ReportFilePath") + "Eexcution_" + timeStamp + "/" + getData("ReportFileName") + ".html");
-		extent.getStats();
+//	public static void instanceReport() throws ParserConfigurationException, IOException {
+//		extent = new ExtentReports();
+////		extent.config().(getData("ReportFilePath") + "Eexcution_" + timeStamp + "/" + getData("ReportFileName") + ".html");
+//		extent.getStats();
+//
+//	}
 
-	}
-
-	public static void initReportTest(String TestName, String TestDescription) {
-		test = extent.createTest(TestName, TestDescription);
-	}
+//	public static void initReportTest(String TestName, String TestDescription) {
+//		test = extent.createTest(TestName, TestDescription);
+//	}
 
 //	public static void finalizeReportTest() {
 //		extent.close(test);
 //	}
 
-	public static void finalizeExtentTest() {
-		extent.flush();
-	}
+//	public static void finalizeExtentTest() {
+//		extent.flush();
+//	}
 }

@@ -1,8 +1,7 @@
 package Infrastructure.Extention;
 
 import Infrastructure.Uitiles.CommanOps;
-import jdk.internal.org.xml.sax.SAXException;
-import org.jsoup.Connection;
+
 import org.openqa.selenium.WebElement;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -13,7 +12,7 @@ import static org.testng.Assert.*;
 
 public class VerifyText extends CommanOps {
     public static void textInElement(WebElement elem, String excptedValue)
-            throws IOException, ParseException, ParserConfigurationException, SAXException {
+            throws IOException, ParseException, ParserConfigurationException {
         try {
             assertEquals(elem.getText(), excptedValue);
 //            test.pass("Verify Text successfully");

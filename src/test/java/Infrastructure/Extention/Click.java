@@ -1,7 +1,6 @@
 package Infrastructure.Extention;
 
 import Infrastructure.Uitiles.CommanOps;
-import jdk.internal.org.xml.sax.SAXException;
 import org.openqa.selenium.WebElement;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -11,7 +10,7 @@ import java.text.ParseException;
 
 public class Click extends CommanOps {
         public static void go(WebElement elem)
-        throws IOException, ParseException, ParserConfigurationException, SAXException {
+        throws IOException, ParseException, ParserConfigurationException {
             try {
                 elem.click();
                 test.pass("Element clicked successfully");
