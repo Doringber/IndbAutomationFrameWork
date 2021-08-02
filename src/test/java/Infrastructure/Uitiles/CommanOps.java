@@ -74,7 +74,7 @@ public class CommanOps extends BaseTest{
 
 	private static WebDriver initChromeDriver() throws ParserConfigurationException, IOException {
 		//setup the chromedriver using WebDriverManager
-		WebDriverManager.chromedriver().setup();
+		WebDriverManager.chromiumdriver().setup();
 		//Create Chrome Options
 		ChromeOptions option = new ChromeOptions();
 		option.addArguments("--test-type");
