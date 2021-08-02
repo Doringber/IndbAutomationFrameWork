@@ -77,14 +77,17 @@ public class CommanOps extends BaseTest{
 		WebDriverManager.chromiumdriver().setup();
 		//Create Chrome Options
 		ChromeOptions option = new ChromeOptions();
+		option.addArguments("headless");
 		option.addArguments("--test-type");
 		option.addArguments("--disable-popup-bloacking");
 		DesiredCapabilities chrome = DesiredCapabilities.chrome();
 		chrome.setJavascriptEnabled(true);
 		option.setCapability(ChromeOptions.CAPABILITY, option);
+		System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
+
 
 		//Create driver object for Chrome
-		driver = new ChromeDriver(new ChromeDriverService.Builder().usingPort(65530).build());
+		driver = new ChromeDriver(option);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
