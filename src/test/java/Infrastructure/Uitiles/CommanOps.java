@@ -3,6 +3,7 @@ package Infrastructure.Uitiles;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -83,7 +84,7 @@ public class CommanOps extends BaseTest{
 		option.setCapability(ChromeOptions.CAPABILITY, option);
 
 		//Create driver object for Chrome
-		driver = new ChromeDriver(option);
+		driver = new ChromeDriver(new ChromeDriverService.Builder().usingPort(65530).build());
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
