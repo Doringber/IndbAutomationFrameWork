@@ -42,7 +42,7 @@ public class CommanOps extends BaseTest{
 			break;
 		}
 		driver.manage().window().maximize();
-		driver.get(configuration.data.get("url").toString());
+		driver.get("https://www.imdb.com/");
 		// screen = new Screen();
 	}
 
@@ -104,7 +104,7 @@ public class CommanOps extends BaseTest{
 
 	@BeforeTest()
 	public void startSession() throws ParserConfigurationException, IOException{
-		initBrowesr(configuration.data.get("browesrType").toString());
+		initBrowesr("chrome");
 		InitPages.init();
 
 	}

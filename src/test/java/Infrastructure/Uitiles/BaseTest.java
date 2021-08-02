@@ -28,7 +28,7 @@ public class BaseTest {
         public static ImdbHomePage ImdbPage;
         public static getConfig configuration;
 
-        static {
+         static {
                 try {
                         configuration = new getConfig();
                 } catch (FileNotFoundException e) {
