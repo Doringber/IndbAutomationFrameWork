@@ -83,8 +83,6 @@ public class CommanOps extends BaseTest{
 		DesiredCapabilities chrome = DesiredCapabilities.chrome();
 		chrome.setJavascriptEnabled(true);
 		option.setCapability(ChromeOptions.CAPABILITY, option);
-		System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
-
 
 		//Create driver object for Chrome
 		driver = new ChromeDriver(option);
