@@ -108,7 +108,7 @@ public class CommanOps extends BaseTest{
 
 	@BeforeTest()
 	public void startSession() throws ParserConfigurationException, IOException{
-		initBrowesr("chrome");
+		initBrowesr("grid");
 		InitPages.init();
 
 	}
